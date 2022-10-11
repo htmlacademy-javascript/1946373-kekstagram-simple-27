@@ -16,3 +16,49 @@ function getLenghtRange (stringChecked, maxLenght) {
   return false;
 }
 getLenghtRange ('Привет!', 20);
+
+
+//module4
+
+const DESCRIPTION_LENDHT = 25; //массив из 25 объектов
+const DESCRIPTION = [
+  'разработка ',
+  'закат',
+  'котики',
+  'путешествие',
+  'природа',
+  'кофе',
+  'завтрак',
+  'свадьба',
+  'пляж',
+  'море',
+  'солнце',
+  'машины',
+  'ресторан',
+  'фитнес зал',
+  'животные',
+  'знакомства',
+  'девайсы',
+  'ремонт',
+  'квартиры',
+  'английский',
+  'обучение',
+  'продажи',
+  'индивидуальные предприниматели',
+  'самозанятые',
+  'курс валют'
+]; // создаем сами объекты массива
+
+const PhotoDescr = function (currentIndex) {
+  return {
+    id: currentIndex + 1, //Почему начальное значение переменной цикла задано как currentIndex + 1? Это нужно, чтобы искать минимальное значение после элемента с позицией currentIndex.
+    url: `photos/${currentIndex + 1}.jpg`,
+    description: DESCRIPTION[currentIndex],
+    likes: getLenghtRange(15,200),
+    comments: getLenghtRange(0,200)
+  };
+};
+
+const KeksPhoto = Array.from({ length:DESCRIPTION_LENDHT }, (value, ind) => PhotoDescr(ind));
+
+console.log(KeksPhoto); //выдает ошибку на вывод консоли
