@@ -59,6 +59,6 @@ const PhotoDescr = function (currentIndex) {
   };
 };
 
-const KeksPhoto = Array.from({ length:DESCRIPTION_LENDHT }, (value, ind) => PhotoDescr(ind));
+const KeksPhotos = Array.from({ length:DESCRIPTION_LENDHT }, (value, ind) => PhotoDescr(ind));
 
-console.log(KeksPhoto); //выдает ошибку на вывод консоли
+console.log(KeksPhotos); //выдает ошибку на вывод консоли
