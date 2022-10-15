@@ -49,9 +49,9 @@ const DESCRIPTION = [
   'курс валют'
 ]; // создаем сами объекты массива
 
-const PhotoDescr = function (currentIndex) {
+const photoDescr = function (currentIndex) {
   return {
-    id: currentIndex + 1, //Почему начальное значение переменной цикла задано как currentIndex + 1? Это нужно, чтобы искать минимальное значение после элемента с позицией currentIndex.
+    id: currentIndex + 1, //(это для себя)Почему начальное значение переменной цикла задано как currentIndex + 1? Это нужно, чтобы искать минимальное значение после элемента с позицией currentIndex.
     url: `photos/${currentIndex + 1}.jpg`,
     description: DESCRIPTION[currentIndex],
     likes: getLenghtRange(15,200),
@@ -59,6 +59,5 @@ const PhotoDescr = function (currentIndex) {
   };
 };
 
-const KeksPhotos = Array.from({ length:DESCRIPTION_LENDHT }, (value, ind) => PhotoDescr(ind));
-
-console.log(KeksPhotos); //выдает ошибку на вывод консоли
+const keksPhotos = Array.from({ length:DESCRIPTION_LENDHT }, (value, ind) => photoDescr(ind));
+console.log(keksPhotos); //ВОПРОС: почему все равно подчеркивает консоль лог?
