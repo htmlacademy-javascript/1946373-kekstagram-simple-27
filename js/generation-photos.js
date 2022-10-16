@@ -15,7 +15,5 @@ const photoDescr = function (currentIndex) {
 
 //генерируем сами объекты
 const keksPhotos = Array.from({ length:DESCRIPTION_LENDHT }, (value, ind) => photoDescr(ind));
-console.log(keksPhotos); //ВОПРОС: почему все равно подчеркивает консоль лог?
-
 
 export {keksPhotos};
