@@ -6,19 +6,13 @@ function getRandomNumber (min, max) {
   if (min <= max && min >= 0) {
     return Math.floor (Math.random() * (max - min + 1) ) + min; }
 
-  return NaN;
+//  return NaN;
 }
-
-getRandomNumber (1, 18);
 
 
 //Функция для проверки максимальной длины строки
 function getLenghtRange (stringChecked, maxLenght) {
-  if (stringChecked.lenght <= maxLenght) {
-    return true;
-  }
-  return false;
+  return stringChecked.lenght <= maxLenght;
 }
-getLenghtRange ('Привет!', 20);
 
 export {getRandomNumber, getLenghtRange};
