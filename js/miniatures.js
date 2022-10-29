@@ -1,7 +1,7 @@
 const picturesWrapper = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture'); //.content.querySelector('.picture');//прописываем путь
 
-const UsersGallery = (galleryValues) => {//функция создающая лайки и тд.
+const usersGallery = (galleryValues) => {//функция создающая фотографии
   const pictureFragment = document.createDocumentFragment(); //создание нового элемента через document.createDocumentFragment
 
   galleryValues.forEach(({url, likes, comments}) => { //.forEach - запускает перебор значений массива
@@ -16,4 +16,4 @@ const UsersGallery = (galleryValues) => {//функция создающая л�
   picturesWrapper.appendChild(pictureFragment);
 };
 
-export {UsersGallery};
+export {usersGallery};
