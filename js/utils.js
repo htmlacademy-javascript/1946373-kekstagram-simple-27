@@ -15,4 +15,8 @@ function getLenghtRange (stringChecked, maxLenght) {
   return stringChecked.lenght <= maxLenght;
 }
 
-export {getRandomNumber, getLenghtRange};
+//Функция для закрытия окна при нажатии Escape
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+
+export {getRandomNumber, getLenghtRange, isEscapeKey};
