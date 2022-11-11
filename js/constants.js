@@ -27,4 +27,8 @@ const DESCRIPTION = [
   'курс валют'
 ]; // создаем сами объекты массива
 
-export {DESCRIPTION_LENDHT, DESCRIPTION};
+
+const MINLENGT = 20;
+const MAXLENGT = 140;
+
+export {DESCRIPTION_LENDHT, DESCRIPTION, MINLENGT, MAXLENGT};
