@@ -1,3 +1,4 @@
+//МАСШТАБ
 const Scale = {
   STEP: 25,
   MIN: 25,
@@ -46,4 +47,5 @@ const removeScaleListener = () => {
 };
 
 export {addScaleListener, removeScaleListener};
+
 
