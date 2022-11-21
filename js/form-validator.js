@@ -12,9 +12,6 @@ const elementDescription = uploadForm.querySelector('.text__description');
 const successButton = document.querySelector('#success').content.querySelector('.success__button');
 const errorButton = document.querySelector('#error').content.querySelector('.error__button');
 const effectLevelElement = document.querySelector('.effect-level');
-// const formElement = document.querySelector('.img-upload__form');
-// const uploadStartElement = document.querySelector('.img-upload__start');
-// const uploadOverlayElement = document.querySelector('.img-upload__overlay');
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'text',

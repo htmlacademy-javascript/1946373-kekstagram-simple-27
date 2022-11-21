@@ -1,5 +1,5 @@
 import {isEscapeKey} from './utils.js';
-import {addScaleListener, removeScaleListener} from './scale.js';//, onEffectsRadio
+import {addScaleListener, removeScaleListener} from './scale.js';
 import {onMessageEscKeydown, resetForm} from './form-validator.js';
 import {onEffectChange} from './form-filters.js';
 
@@ -8,11 +8,7 @@ const uploadFile = body.querySelector('#upload-file');
 const uploadModal = body.querySelector('.img-upload__overlay');
 const uploadFileClose = uploadModal.querySelector('.img-upload__cancel');
 const uploadForm = document.querySelector('.img-upload__form');
-// const uploadPreviewElement = document.querySelector('.img-upload__preview img');
 const effectLevelElement = document.querySelector('.effect-level');
-// const modalEffectLevel = uploadModal.querySelector('.effect-level__value');
-// const modalEffectRadio = uploadModal.querySelectorAll('.effects__radio');
-// const modalComment = uploadModal.querySelectorAll('.text__description');
 const effectsListElement = document.querySelector('.effects__list');
 
 

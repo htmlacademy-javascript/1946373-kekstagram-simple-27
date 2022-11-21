@@ -35,5 +35,4 @@ const sendData = async (onSuccess, onFail, body) => {
   }
 };
 
-
 export {getData, sendData};

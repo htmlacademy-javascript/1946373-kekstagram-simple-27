@@ -1,7 +1,6 @@
 const fullPhotoElement = document.querySelector('.img-upload__preview img');
 const effectLevelElement = document.querySelector('.effect-level');
 const effectsListElement = document.querySelector('.effects__list');
-// const uploadPreviewElement = document.querySelector('.img-upload__preview img');
 
 const onEffectChange = (evt) => {
   fullPhotoElement.className = 'effects__preview--none';
