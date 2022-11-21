@@ -17,19 +17,28 @@ const effectLevelElement = document.querySelector('.effect-level');
 const effectsListElement = document.querySelector('.effects__list');
 // uploadFile.addEventListener ('change', () => openUploadField());//событие меняющее в разметке
 // uploadFileClose.addEventListener ('click', () => closeUploadField());
+
 //функция заменяющая состояния
 function onModalEcsKeydown (evt) {
   if (isEscapeKey(evt)) {
+    // uploadModal.classList.add('hidden');
+    // body.classList.remove('modal-open');
     evt.preventDefault(); //preventDefault - замена состояния на противоположное
     closeUploadField();
   }
 
 }
 
+// const onModalEcsKeydown = (evt) => {
+//   if (isEscapeKey(evt)) {
+//     evt.preventDefault();
+//     closeUploadField();
+//   }
+// };
+
 function closeUploadField () {
   uploadModal.classList.add('hidden');
   body.classList.remove('modal-open');
-  removeScaleListener();
   // uploadFile.value = '';
   // modalEffectLevel.value = '';
   // modalEffectRadio.forEach((input) => {
@@ -38,10 +47,10 @@ function closeUploadField () {
   // modalComment.value = '';
   document.removeEventListener('keydown', onModalEcsKeydown);//при нажатии на клавишу срабатывает onModalEcsKeydown
   effectsListElement.removeEventListener('change', onEffectChange);
-  resetForm ();
   uploadForm.removeEventListener('submit', onUploadFormSubmit);
+  removeScaleListener();
+  resetForm ();
 }
-
 
 //функция добавляющая эти состояния
 function openUploadField () {
@@ -52,6 +61,8 @@ function openUploadField () {
   effectLevelElement.classList.add('hidden');
   addScaleListener();
 }
+
+
 // uploadFile.addEventListener ('change', () => openUploadField());//событие меняющее в разметке
 uploadFileClose.addEventListener ('click', () => closeUploadField());
 uploadFile.addEventListener('change', openUploadField);
