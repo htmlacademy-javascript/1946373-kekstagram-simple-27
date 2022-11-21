@@ -12,7 +12,7 @@ const getData = (onSuccess) => {
       onSuccess(pictures);
     })
     .catch(() => {
-      showIfError('Ошибка загрузки');
+      showIfError('Ошибка Загрузки');
     });
 };
 
@@ -34,5 +34,6 @@ const sendData = async (onSuccess, onFail, body) => {
     onFail(error.message);
   }
 };
+
 
 export {getData, sendData};
