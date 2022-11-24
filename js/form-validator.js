@@ -12,6 +12,8 @@ const elementDescription = uploadForm.querySelector('.text__description');
 const successButton = document.querySelector('#success').content.querySelector('.success__button');
 const errorButton = document.querySelector('#error').content.querySelector('.error__button');
 const effectLevelElement = document.querySelector('.effect-level');
+const BLOCK_SUBMIT = 'Сохраняю...';
+const UNBLOCK_SUBMIT = 'Сохранить';
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'text',
@@ -90,13 +92,13 @@ function hideMessage () {
 const blockSubmitButton = () => {
   uploadSubmitElement.disabled = true;
   elementDescription.readOnly = true;
-  uploadSubmitElement.textContent = 'Сохраняю...';
+  uploadSubmitElement.textContent = BLOCK_SUBMIT;
 };
 
 const unblockSubmitButton = () => {
   uploadSubmitElement.disabled = false;
   elementDescription.readOnly = false;
-  uploadSubmitElement.textContent = 'Сохранить';
+  uploadSubmitElement.textContent = UNBLOCK_SUBMIT;
 };
 
 const setUserFormSubmit = (onSuccess) => {
