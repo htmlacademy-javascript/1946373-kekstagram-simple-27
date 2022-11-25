@@ -1,4 +1,3 @@
-//МАСШТАБ
 const Scale = {
   STEP: 25,
   MIN: 25,
@@ -9,7 +8,6 @@ const buttonSmall = document.querySelector('.scale__control--smaller');
 const buttonBigger = document.querySelector('.scale__control--bigger');
 const buttonValue = document.querySelector('.scale__control--value');
 const uploadPreviewElement = document.querySelector('.img-upload__preview img');
-
 
 const onPictureSmaller = () => {
   const {STEP, MIN, MAX} = Scale;
