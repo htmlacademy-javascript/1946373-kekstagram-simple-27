@@ -1,5 +1,3 @@
-
-
 import { showIfError } from './utils.js';
 
 const URL_SERVER = 'https://27.javascript.pages.academy/kekstagram-simple';
