@@ -25,10 +25,19 @@ const onModalEcsKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault(); //preventDefault - замена состояния на противоположное
     onСloseUploadField();
+    //.removeonСloseUploadField();
   }
 };
 
-
+//СТРЕЛОЧНОЙ
+const onOpenUploadField = () => {
+  uploadModal.classList.remove('hidden');
+  body.classList.add('modal-open');
+  document.querySelector('.scale__control--value').value = '100%';
+  document.addEventListener('keydown', onModalEcsKeydown);
+  effectLevelElement.classList.add('hidden');
+  addScaleListener();
+};
 // function onСloseUploadField() {
 //   uploadModal.classList.add('hidden');
 //   body.classList.remove('modal-open');
@@ -57,16 +66,6 @@ const onСloseUploadField = () => {
 //   effectLevelElement.classList.add('hidden');
 //   addScaleListener();
 // }
-
-//СТРЕЛОЧНОЙ
-const onOpenUploadField = () => {
-  uploadModal.classList.remove('hidden');
-  body.classList.add('modal-open');
-  document.querySelector('.scale__control--value').value = '100%';
-  document.addEventListener('keydown', onModalEcsKeydown);
-  effectLevelElement.classList.add('hidden');
-  addScaleListener();
-};
 
 
 uploadFileClose.addEventListener('click', () => onСloseUploadField());
