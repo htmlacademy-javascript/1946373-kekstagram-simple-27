@@ -1,6 +1,7 @@
 import {MINLENGT,MAXLENGT} from './constants.js';
 import {sendData} from './api.js';
 import {isEscapeKey} from './utils.js';
+import {onСloseUploadField} from './form.js';
 
 const bodyElement = document.querySelector('body');
 const uploadPreviewElement = document.querySelector('.img-upload__preview img');
@@ -12,9 +13,8 @@ const elementDescription = uploadForm.querySelector('.text__description');
 const successButton = document.querySelector('#success').content.querySelector('.success__button');
 const errorButton = document.querySelector('#error').content.querySelector('.error__button');
 const effectLevelElement = document.querySelector('.effect-level');
-// const formElement = document.querySelector('.img-upload__form');
-// const uploadStartElement = document.querySelector('.img-upload__start');
-// const uploadOverlayElement = document.querySelector('.img-upload__overlay');
+const BLOCK_SUBMIT = 'Сохраняю...';
+const UNBLOCK_SUBMIT = 'Сохранить';
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'text',
@@ -47,6 +47,7 @@ const onMessageEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     hideMessage();
+    onСloseUploadField();
   }
 };
 
@@ -93,13 +94,13 @@ function hideMessage () {
 const blockSubmitButton = () => {
   uploadSubmitElement.disabled = true;
   elementDescription.readOnly = true;
-  uploadSubmitElement.textContent = 'Сохраняю...';
+  uploadSubmitElement.textContent = BLOCK_SUBMIT;
 };
 
 const unblockSubmitButton = () => {
   uploadSubmitElement.disabled = false;
   elementDescription.readOnly = false;
-  uploadSubmitElement.textContent = 'Сохранить';
+  uploadSubmitElement.textContent = UNBLOCK_SUBMIT;
 };
 
 const setUserFormSubmit = (onSuccess) => {
@@ -126,4 +127,3 @@ const setUserFormSubmit = (onSuccess) => {
 };
 
 export { onMessageEscKeydown, resetForm, setUserFormSubmit};
-

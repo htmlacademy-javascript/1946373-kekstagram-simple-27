@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const DESCRIPTION_LENDHT = 25; //массив из 25 объектов
 // const DESCRIPTION = [
 //   'разработка ',
@@ -28,8 +29,15 @@ const DESCRIPTION_LENDHT = 25; //массив из 25 объектов
 // ]; // создаем сами объекты массива
 
 
+=======
+>>>>>>> module11-task1
 const MINLENGT = 20;
 const MAXLENGT = 140;
 
 
+<<<<<<< HEAD
 export {DESCRIPTION_LENDHT, MINLENGT, MAXLENGT};//DESCRIPTION,
+=======
+
+export {MINLENGT, MAXLENGT, MINSIZE, MAXSIZE, };
+>>>>>>> module11-task1
