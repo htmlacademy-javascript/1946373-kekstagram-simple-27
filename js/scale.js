@@ -49,4 +49,3 @@ const removeScaleListener = () => {
 
 export {addScaleListener, removeScaleListener};
 
-

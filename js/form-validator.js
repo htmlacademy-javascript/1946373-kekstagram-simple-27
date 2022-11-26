@@ -1,7 +1,6 @@
 import {MINLENGT,MAXLENGT} from './constants.js';
 import {sendData} from './api.js';
 import {isEscapeKey} from './utils.js';
-import {onСloseUploadField} from './form.js';
 
 const bodyElement = document.querySelector('body');
 const uploadPreviewElement = document.querySelector('.img-upload__preview img');
@@ -47,7 +46,6 @@ const onMessageEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     hideMessage();
-    onСloseUploadField();
   }
 };
 

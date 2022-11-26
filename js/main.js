@@ -7,4 +7,3 @@ getData((pictures) => {
   usersGallery(pictures);
 });
 setUserFormSubmit(onСloseUploadField);
-
