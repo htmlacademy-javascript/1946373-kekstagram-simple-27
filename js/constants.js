@@ -31,4 +31,5 @@ const DESCRIPTION_LENDHT = 25; //массив из 25 объектов
 const MINLENGT = 20;
 const MAXLENGT = 140;
 
+
 export {DESCRIPTION_LENDHT, MINLENGT, MAXLENGT};//DESCRIPTION,
