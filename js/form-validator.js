@@ -1,6 +1,7 @@
 import {MINLENGT,MAXLENGT} from './constants.js';
 import {sendData} from './api.js';
 import {isEscapeKey} from './utils.js';
+import {onСloseUploadField, onModalEcsKeydown} from './form.js';
 
 const bodyElement = document.querySelector('body');
 const uploadPreviewElement = document.querySelector('.img-upload__preview img');
@@ -12,8 +13,6 @@ const elementDescription = uploadForm.querySelector('.text__description');
 const successButton = document.querySelector('#success').content.querySelector('.success__button');
 const errorButton = document.querySelector('#error').content.querySelector('.error__button');
 const effectLevelElement = document.querySelector('.effect-level');
-const BLOCK_SUBMIT = 'Сохраняю...';
-const UNBLOCK_SUBMIT = 'Сохранить';
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'text',
@@ -39,89 +38,83 @@ const resetForm = () => {
   uploadPreviewElement.style.transform = 'scale(1)';
   uploadPreviewElement.style.filter = '';
   effectLevelElement.classList.add('hidden');
+  uploadSubmitElement.disabled = false;
 };
 
 
-const onMessageEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
+const onErrorClickEsc = (evt) => {
+  if(isEscapeKey(evt)) {
     evt.preventDefault();
-    hideMessage();
+    onWindowWarningClose();
   }
 };
 
-const onRandomArea = () => {
-  hideMessage();
-};
 
-const onSuccessButtonClick = () => {
-  hideMessage();
-};
+//Закрытие окна с успешной или ошибочной отправкой.
+function onWindowWarningClose () {
+  const successSectionElement = document.querySelector('.success');
+  const errorSectionElement = document.querySelector('.error');
 
-const onErrorButtonClick = () => {
-  hideMessage();
+  if (successSectionElement) {
+    successSectionElement.remove();
+  }
+
+  if (errorSectionElement) {
+    errorSectionElement.remove();
+  }
+  document.addEventListener('keydown', onModalEcsKeydown);
+}
+
+const onAreaWindowClose = (evt) => {
+  if (evt.target.closest('section')) {
+    onWindowWarningClose();
+  }
 };
 
 const getSuccessMessage = () => {
   const elementSuccessMessage = successMessageElement.cloneNode(true);
-  document.addEventListener('keydown', onMessageEscKeydown);
-  document.addEventListener('click', onRandomArea);
-  successButton.addEventListener('click', onSuccessButtonClick);
+  document.addEventListener('keydown', onErrorClickEsc);
+  document.addEventListener('click', onAreaWindowClose);
+  successButton.addEventListener('click', onWindowWarningClose);
   bodyElement.append(elementSuccessMessage);
   bodyElement.style.overflow = 'hidden';
 };
 
 const getErrorMessage = () => {
   const elementErrorMessage = errorMessageElement.cloneNode(true);
-  document.addEventListener('keydown', onMessageEscKeydown);
-  document.addEventListener('click', onRandomArea);
-  errorButton.addEventListener('click', onErrorButtonClick);
+  document.addEventListener('keydown', onWindowWarningClose);
+  document.addEventListener('click', onAreaWindowClose);
+  errorButton.addEventListener('click', onModalEcsKeydown);
   bodyElement.append(elementErrorMessage);
   bodyElement.style.overflow = 'hidden';
+  document.removeEventListener('keydown', onModalEcsKeydown);
 };
-
-function hideMessage () {
-  const messageElement = document.querySelector('.success') || document.querySelector('.error');
-  messageElement.remove();
-  document.removeEventListener('keydown', onMessageEscKeydown);
-  document.removeEventListener('click', onRandomArea);
-  successButton.removeEventListener('click', onSuccessButtonClick);
-  errorButton.removeEventListener('click', onErrorButtonClick);
-  bodyElement.style.overflow = 'auto';
-}
 
 const blockSubmitButton = () => {
   uploadSubmitElement.disabled = true;
   elementDescription.readOnly = true;
-  uploadSubmitElement.textContent = BLOCK_SUBMIT;
 };
 
 const unblockSubmitButton = () => {
   uploadSubmitElement.disabled = false;
   elementDescription.readOnly = false;
-  uploadSubmitElement.textContent = UNBLOCK_SUBMIT;
 };
 
-const setUserFormSubmit = (onSuccess) => {
-  uploadForm.addEventListener('submit', onSubmitButton);
-  function onSubmitButton (evt) {
+const setUserFormSubmit = () => {
+
+  uploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    const isValid = pristine.validate();
-    if (isValid) {
+    const formData = new FormData(evt.target);
+
+    if (pristine.validate()) {
       blockSubmitButton();
-      sendData(
-        () => {
-          onSuccess();
-          unblockSubmitButton();
-          getSuccessMessage();
-        },
-        () => {
-          getErrorMessage();
-          unblockSubmitButton();
-        },
-        new FormData(evt.target),
-      );
+      getSuccessMessage();
+      sendData(formData, onСloseUploadField, unblockSubmitButton);
+
+    } else {
+      getErrorMessage(unblockSubmitButton);
     }
-  }
+  });
 };
 
-export { onMessageEscKeydown, resetForm, setUserFormSubmit};
+export { onErrorClickEsc, resetForm, setUserFormSubmit, getErrorMessage};

@@ -1,6 +1,6 @@
 import { isEscapeKey } from './utils.js';
 import { addScaleListener, removeScaleListener } from './scale.js';
-import { onMessageEscKeydown, resetForm } from './form-validator.js';
+import { onErrorClickEsc, resetForm } from './form-validator.js';
 import { onEffectChange } from './form-filters.js';
 
 const body = document.querySelector('body');
@@ -11,39 +11,39 @@ const uploadForm = document.querySelector('.img-upload__form');
 const effectLevelElement = document.querySelector('.effect-level');
 const effectsListElement = document.querySelector('.effects__list');
 
-
-// функция заменяющая состояния
-function onModalEcsKeydown(evt) {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault(); //preventDefault - замена состояния на противоположное
-    onСloseUploadField();
-  }
-
-}
-
-function onСloseUploadField() {
+const onUserModalWindow = () => {
   uploadModal.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onModalEcsKeydown);
-  effectsListElement.removeEventListener('change', onEffectChange);
-  uploadForm.removeEventListener('submit', onMessageEscKeydown);
-  uploadFileClose.removeEventListener('click', () => onСloseUploadField());
   removeScaleListener();
   resetForm();
-}
+};
 
+// функция заменяющая состояния
+const onModalEcsKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault(); //preventDefault - замена состояния на противоположное
+    onUserModalWindow();
+  }
+};
 
-function onOpenUploadField() {
+const onOpenUploadField = () => {
   uploadModal.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.querySelector('.scale__control--value').value = '100%';
   document.addEventListener('keydown', onModalEcsKeydown);
   effectLevelElement.classList.add('hidden');
+  document.querySelector('.scale__control--value').value = '100%';
   addScaleListener();
-}
+};
 
+const onСloseUploadField = () => {
+  effectsListElement.removeEventListener('change', onEffectChange);
+  uploadForm.removeEventListener('submit', onErrorClickEsc);
+  uploadFileClose.removeEventListener('click', onUserModalWindow);
+  document.removeEventListener('keydown', onModalEcsKeydown);
+  onUserModalWindow();
+};
 
-uploadFileClose.addEventListener('click', () => onСloseUploadField());
+uploadFileClose.addEventListener('click',onСloseUploadField);
 uploadFile.addEventListener('change', onOpenUploadField);
 
-export {onСloseUploadField};
+export {onСloseUploadField, onModalEcsKeydown};
